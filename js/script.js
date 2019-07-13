@@ -1,4 +1,5 @@
 function ThLoad() {
+	var home = document.getElementById("kex-home");
 	var goto = document.getElementById("kex-goto");
 	var rawFile = new XMLHttpRequest();
 	var yeet;
@@ -31,6 +32,7 @@ function ThLoad() {
 	prev.style.visibility = "hidden";
 	next.style.visibility = "visible";
 	goto.value = 0;
+	home.innerHTML = "Home";
 }
 
 function ThPrev() {
@@ -285,3 +287,4 @@ function ThGoto(obj) {
 		}
 	}
 }
+
