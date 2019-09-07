@@ -1,0 +1,1 @@
+linear-gradient(rgba(var(--color-background),0.8),rgba(var(--color-background),0.8)),url('https://files.catbox.moe/iy5w9b.webp') 100% fixed

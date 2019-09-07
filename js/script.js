@@ -19,7 +19,6 @@ function ThLoad() {
 	var avatar = document.getElementById("kex-avatar");
 	var banner = document.getElementById("kex-banner");
 	var bio = document.getElementById("kex-bio");
-	var themetxt = "unknown";
 	window.themenum = 0;
 	var prev = document.getElementById("kex-prev");
 	var next = document.getElementById("kex-nxt");
@@ -29,10 +28,15 @@ function ThLoad() {
 	avatar.src = "https://media1.tenor.com/images/72c9b849aa10b222371ebb99a6b1896a/tenor.gif";
 	theme.innerHTML = "Welcome to my<br>theme collection!";
 	bio.innerHTML = "Click on 'Next Theme' to view the themes!<br><br>Total themes: <b>" + totaltheme + "</b><br><em>Of course, this number is evergrowing.</em><br><br>Site made by <a href='https://anilist.co/user/Kex1016'>Kex1016</a> from the <a href='https://anilist.co/'>AniList</a> website.";
-	prev.style.visibility = "hidden";
+	prev.style.color = "#616161";
+	prev.style.cursor = "default";
+	next.style.color = "rgb(var(--color-text-lighter))";
+	next.style.cursor = "pointer";
+	prev.style.visibility = "visible";
 	next.style.visibility = "visible";
 	goto.value = 0;
 	home.innerHTML = "Home";
+	next.innerHTML = "First Theme";
 }
 
 function ThPrev() {
@@ -56,10 +60,11 @@ function ThPrev() {
 	var avatar = document.getElementById("kex-avatar");
 	var banner = document.getElementById("kex-banner");
 	var bio = document.getElementById("kex-bio");
-	var themetxt = "unknown";
 	var prev = document.getElementById("kex-prev");
 	var next = document.getElementById("kex-nxt");
-	prev.style.visibility = "hidden";
+	var bg = document.getElementById("goodgood");
+	prev.style.color = "#616161";
+	prev.style.cursor = "default";
 	window.themenum -= 1;
 	if (themenum < 1) {
 		themenum += 1;
@@ -106,18 +111,32 @@ function ThPrev() {
 			}
 		}
 		rawFile.send(null);
+		rawFile.open("GET", "/stuff/0" + themenum + "-bg.txt", false);
+		rawFile.onreadystatechange = function () {
+			if (rawFile.readyState === 4) {
+				if (rawFile.status === 200 || rawFile.status == 0) {
+					var bgtxt = rawFile.responseText;
+					document.body.style.background = bgtxt
+				}
+			}
+		}
+		rawFile.send(null);
 		goto.value = themenum;
 		themenumber.innerHTML = themenum + " / " + totaltheme
 
 		if (themenum > 1) {
-			prev.style.visibility = "visible";
+			prev.style.color = "rgb(var(--color-text-lighter))";
+			prev.style.cursor = "pointer";
 		} else {
-			prev.style.visibility = "hidden";
+			prev.style.color = "#616161";
+			prev.style.cursor = "default";
 		}
 		if (themenum >= totaltheme) {
-			next.style.visibility = "hidden";
+			next.style.color = "#616161";
+			next.style.cursor = "default";
 		} else {
-			next.style.visibility = "visible";
+			next.style.color = "rgb(var(--color-text-lighter))";
+			next.style.cursor = "pointer";
 		}
 	}
 }
@@ -143,9 +162,9 @@ function ThNxt() {
 	var avatar = document.getElementById("kex-avatar");
 	var banner = document.getElementById("kex-banner");
 	var bio = document.getElementById("kex-bio");
-	var themetxt = "unknown";
 	var prev = document.getElementById("kex-prev");
 	var next = document.getElementById("kex-nxt");
+	var bg = document.getElementById("goodgood");
 	window.themenum += 1;
 	if (themenum > totaltheme) {
 		themenum -= 1;
@@ -192,19 +211,34 @@ function ThNxt() {
 			}
 		}
 		rawFile.send(null);
+		rawFile.open("GET", "/stuff/0" + themenum + "-bg.txt", false);
+		rawFile.onreadystatechange = function () {
+			if (rawFile.readyState === 4) {
+				if (rawFile.status === 200 || rawFile.status == 0) {
+					var bgtxt = rawFile.responseText;
+					document.body.style.background = bgtxt
+				}
+			}
+		}
+		rawFile.send(null);
 		goto.value = themenum;
 		themenumber.innerHTML = themenum + " / " + totaltheme
 		if (themenum > 1) {
-			prev.style.visibility = "visible";
+			prev.style.color = "rgb(var(--color-text-lighter))";
+			prev.style.cursor = "pointer";
 		} else {
-			prev.style.visibility = "hidden";
+			prev.style.color = "#616161";
+			prev.style.cursor = "default";
 		}
 		if (themenum >= totaltheme) {
-			next.style.visibility = "hidden";
+			next.style.color = "#616161";
+			next.style.cursor = "default";
 		} else {
-			next.style.visibility = "visible";
+			next.style.color = "rgb(var(--color-text-lighter))";
+			next.style.cursor = "pointer";
 		}
 	}
+	next.innerHTML = "Next Theme";
 }
 
 function ThGoto(obj) {
@@ -228,11 +262,12 @@ function ThGoto(obj) {
 	var avatar = document.getElementById("kex-avatar");
 	var banner = document.getElementById("kex-banner");
 	var bio = document.getElementById("kex-bio");
-	var themetxt = "unknown";
 	var prev = document.getElementById("kex-prev");
 	var next = document.getElementById("kex-nxt");
+	var bg = document.getElementById("goodgood");
 	if (themenum > totaltheme) {
 		alert("Not a valid number. Try again. Total available themes: " + totaltheme);
+		ThLoad();
 	} else {
 		rawFile.open("GET", "/stuff/0" + themenum + "-bio.txt", false);
 		rawFile.onreadystatechange = function () {
@@ -274,17 +309,34 @@ function ThGoto(obj) {
 			}
 		}
 		rawFile.send(null);
+		rawFile.open("GET", "/stuff/0" + themenum + "-bg.txt", false);
+		rawFile.onreadystatechange = function () {
+			if (rawFile.readyState === 4) {
+				if (rawFile.status === 200 || rawFile.status == 0) {
+					var bgtxt = rawFile.responseText;
+					bg.style.background = bgtxt;
+				}
+			}
+		}
+		rawFile.send(null);
 		themenumber.innerHTML = themenum + " / " + totaltheme
 		if (themenum > 1) {
-			prev.style.visibility = "visible";
+			prev.style.color = "rgb(var(--color-text-lighter))";
+			prev.style.cursor = "pointer";
 		} else {
-			prev.style.visibility = "hidden";
+			prev.style.color = "#616161";
+			prev.style.cursor = "default";
 		}
 		if (themenum >= totaltheme) {
-			next.style.visibility = "hidden";
+			next.style.color = "#616161";
+			next.style.cursor = "default";
 		} else {
-			next.style.visibility = "visible";
+			next.style.color = "rgb(var(--color-text-lighter))";
+			next.style.cursor = "pointer";
 		}
+		next.innerHTML = "Next Theme";
 	}
+	goto.style.visibility = "hidden";
+	goto.style.visibility = "visible";
 }
 

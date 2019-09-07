@@ -1,0 +1,1 @@
+linear-gradient(rgba(var(--color-background),0.8),rgba(var(--color-background),0.8)),url('https://static.sorozatbarat.online/covers/5992/2.jpg') 100% fixed
