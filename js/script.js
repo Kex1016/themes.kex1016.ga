@@ -23,6 +23,7 @@ function ThLoad() {
 	var prev = document.getElementById("kex-prev");
 	var next = document.getElementById("kex-nxt");
 	var themenumber = document.getElementById("themenum");
+	var bg = document.getElementById("goodgood");
 	themenumber.innerHTML = "- / " + totaltheme
 	banner.style.backgroundImage = "url('https://files.catbox.moe/azhubp.jpg')";
 	avatar.src = "https://media1.tenor.com/images/72c9b849aa10b222371ebb99a6b1896a/tenor.gif";
@@ -37,6 +38,7 @@ function ThLoad() {
 	goto.value = 0;
 	home.innerHTML = "Home";
 	next.innerHTML = "First Theme";
+	bg.style.background = "rgb(var(--color-background)";
 }
 
 function ThPrev() {
@@ -116,7 +118,7 @@ function ThPrev() {
 			if (rawFile.readyState === 4) {
 				if (rawFile.status === 200 || rawFile.status == 0) {
 					var bgtxt = rawFile.responseText;
-					document.body.style.background = bgtxt
+					bg.style.background = bgtxt
 				}
 			}
 		}
@@ -216,7 +218,7 @@ function ThNxt() {
 			if (rawFile.readyState === 4) {
 				if (rawFile.status === 200 || rawFile.status == 0) {
 					var bgtxt = rawFile.responseText;
-					document.body.style.background = bgtxt
+					bg.style.background = bgtxt
 				}
 			}
 		}
@@ -336,7 +338,5 @@ function ThGoto(obj) {
 		}
 		next.innerHTML = "Next Theme";
 	}
-	goto.style.visibility = "hidden";
-	goto.style.visibility = "visible";
 }
 

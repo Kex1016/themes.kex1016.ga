@@ -1,1 +1,1 @@
-rgba(var(--color-background),0.8
+rgb(var(--color-background))
