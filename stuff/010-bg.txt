@@ -1,1 +1,1 @@
-transparent
+rgba(var(--color-background),0.8

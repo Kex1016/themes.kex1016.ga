@@ -1,1 +1,1 @@
-https://files.catbox.moe/i8804p.jpg
+rgba(var(--color-background),0.8
