@@ -35,11 +35,9 @@
 	<link href=css/chunk-vendors.3826fb1f.css rel=stylesheet>
 	<link href=css/main.b7f48c4c.css rel=stylesheet>
 	<link href=css/style.css rel=stylesheet>
-	<script src="js/script.js"></script>
-	<script src="js/vers.js"></script>
 </head>
 
-<body onload="ThLoad()">
+<body>
 	<div class="noscript modern-browser" style="display: none">Sorry, AniList requires a modern browser.<br>Please <a href=http://outdatedbrowser.com/>upgrade to a newer web browser</a>. </div> <div id="app" data-server-rendered="true" class="transparent">
 			<div class="progress fixed" style="width:0%;" data-v-67d7b6e5></div>
 			<div class="page-content">
@@ -179,7 +177,49 @@
 				</div>
 			</div>
 	</div>
+	<script src="js/script.js"></script>
+	<script src="js/vers.js"></script>
 	<script>
+		var home = document.getElementById("kex-home");
+			var goto = document.getElementById("kex-goto");
+			var rawFile = new XMLHttpRequest();
+			var yeet;
+			rawFile.open("GET", "text.txt", false);
+			rawFile.onreadystatechange = function () {
+				if (rawFile.readyState === 4) {
+					if (rawFile.status === 200 || rawFile.status == 0) {
+						yeet = rawFile.responseText;
+						console.log(yeet)
+					}
+				}
+			}
+			rawFile.send(null);
+
+			var totaltheme = parseInt(yeet)
+			var theme = document.getElementById("kex-theme");
+			var avatar = document.getElementById("kex-avatar");
+			var banner = document.getElementById("kex-banner");
+			var bio = document.getElementById("kex-bio");
+			window.themenum = 0;
+			var prev = document.getElementById("kex-prev");
+			var next = document.getElementById("kex-nxt");
+			var themenumber = document.getElementById("themenum");
+			var bg = document.getElementById("goodgood");
+			themenumber.innerHTML = "- / " + totaltheme
+			banner.style.backgroundImage = "url('https://files.catbox.moe/azhubp.jpg')";
+			avatar.src = "https://media1.tenor.com/images/72c9b849aa10b222371ebb99a6b1896a/tenor.gif";
+			theme.innerHTML = "Welcome to my<br>theme collection!";
+			bio.innerHTML = "Click on 'Next Theme' to view the themes!<br><br>Total themes: <b>" + totaltheme + "</b><br><em>Of course, this number is evergrowing.</em><br><br>Site made by <a href='https://anilist.co/user/Kex1016'>Kex1016</a> from the <a href='https://anilist.co/'>AniList</a> website.";
+			prev.style.color = "#616161";
+			prev.style.cursor = "default";
+			next.style.color = "rgb(var(--color-text-lighter))";
+			next.style.cursor = "pointer";
+			prev.style.visibility = "visible";
+			next.style.visibility = "visible";
+			goto.value = 0;
+			home.innerHTML = "Home";
+			next.innerHTML = "First Theme";
+			bg.style.background = "rgb(var(--color-background)";
 		! function() {
 			var e = document,
 				t = e.createElement("script");
@@ -192,6 +232,19 @@
 				}, !0), t.type = "module", t.src = ".", e.head.appendChild(t), t.remove()
 			}
 		}();
+		
+		if (window.location.hash) {
+			var replaced = window.location.hash.replace("#","");
+			var parsed = parseInt(replaced);
+			var condition = Number.isInteger(parsed);
+
+				if (condition == true) {
+					console.log("----------------------------------------------------\nCurrent hash: " + window.location.hash + "\nParsed: " + parsed + "\n(Running script)\n----------------------------------------------------");
+					GotoLink(parsed);
+				} else {
+					console.log("----------------------------------------------------\nCurrent hash: " + window.location.hash + "\nParsed: " + parsed + "\n(Not running script)\n----------------------------------------------------");
+				}
+			}
 	</script>
 </body>
 <!-- Mirrored from anilist.co/user/Kex1016/ Sat, 13 Jul 2019 14:06:40 GMT --></html>
